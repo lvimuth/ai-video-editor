@@ -3,11 +3,12 @@ import { UserDetailContext } from "@/app/_context/UserDetailContext";
 import { Progress } from "@/components/ui/progress";
 import { CoinsIcon, Grid2X2, UserCircle } from "lucide-react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import React, { useContext, useEffect } from "react";
 
 function SideBar() {
   const { userDetails, setUserDetails } = useContext(UserDetailContext);
-
+  const path = usePathname();
   const menuOption = [
     {
       name: "Dashboard",
@@ -35,7 +36,7 @@ function SideBar() {
         {menuOption.map((item, index) => (
           <li
             key={index}
-            className="flex gap-2 items-center p-3 mt-2 hover:bg-primary rounded-lg hover:text-white cursor-pointer"
+            className={`flex gap-2 items-center p-3 mt-2 hover:bg-primary rounded-lg hover:text-white cursor-pointer ${path==item.path&&'bg-primary text-white'}`}
           >
             <item.icon />
             {item.name}
@@ -46,7 +47,8 @@ function SideBar() {
         <h2 className="font-bold">Total Usage</h2>
         <Progress value={(userDetails?.userResult?.[0]?.credits ?? 0) * 10} />
         <h2 className="text-xs text-gray-500">
-          {10 -(userDetails?.userResult?.[0]?.credits ?? 0)} Min used out of 10 min{" "}
+          {10 - (userDetails?.userResult?.[0]?.credits ?? 0)} Min used out of 10
+          min{" "}
         </h2>
       </div>
     </div>
