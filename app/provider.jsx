@@ -15,7 +15,7 @@ function Provider({ children }) {
   const saveUserInfo = async () => {
     const result = await axios.post("/api/user", { user: user });
     setUserDetails(result.data);
-    // console.log(result.data);
+    //console.log(result.data);
   };
 
   return (

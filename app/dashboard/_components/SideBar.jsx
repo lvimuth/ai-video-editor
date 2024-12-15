@@ -1,9 +1,13 @@
+"use client";
+import { UserDetailContext } from "@/app/_context/UserDetailContext";
 import { Progress } from "@/components/ui/progress";
 import { CoinsIcon, Grid2X2, UserCircle } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 function SideBar() {
+  const { userDetails, setUserDetails } = useContext(UserDetailContext);
+
   const menuOption = [
     {
       name: "Dashboard",
@@ -40,8 +44,10 @@ function SideBar() {
       </ul>
       <div className="p-3 border rounded-lg text-sm absolute bottom-10 w-[85%] flex flex-col gap-2">
         <h2 className="font-bold">Total Usage</h2>
-        <Progress value={33} />
-        <h2 className="text-xs text-gray-500">3 Min used out of 10 min </h2>
+        <Progress value={(userDetails?.userResult?.[0]?.credits ?? 0) * 10} />
+        <h2 className="text-xs text-gray-500">
+          {10 -(userDetails?.userResult?.[0]?.credits ?? 0)} Min used out of 10 min{" "}
+        </h2>
       </div>
     </div>
   );
