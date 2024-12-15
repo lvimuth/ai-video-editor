@@ -1,10 +1,12 @@
 "use client";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { UserDetailContext } from "./_context/UserDetailContext";
 
 function Provider({ children }) {
   const { user } = useUser();
+  const [userDetails, setUserDetails] = useState([]);
 
   useEffect(() => {
     user && saveUserInfo();
@@ -12,10 +14,17 @@ function Provider({ children }) {
 
   const saveUserInfo = async () => {
     const result = await axios.post("/api/user", { user: user });
-    console.log(result);
+    setUserDetails(result.data);
+    // console.log(result.data);
   };
 
-  return <div>{children}</div>;
+  return (
+    <div>
+      <UserDetailContext.Provider value={{ userDetails, setUserDetails }}>
+        {children}
+      </UserDetailContext.Provider>
+    </div>
+  );
 }
 
 export default Provider;
