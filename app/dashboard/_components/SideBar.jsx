@@ -1,3 +1,4 @@
+import { Progress } from "@/components/ui/progress";
 import { CoinsIcon, Grid2X2, UserCircle } from "lucide-react";
 import Image from "next/image";
 import React from "react";
@@ -37,6 +38,11 @@ function SideBar() {
           </li>
         ))}
       </ul>
+      <div className="p-3 border rounded-lg text-sm absolute bottom-10 w-[85%] flex flex-col gap-2">
+        <h2 className="font-bold">Total Usage</h2>
+        <Progress value={33} />
+        <h2 className="text-xs text-gray-500">3 Min used out of 10 min </h2>
+      </div>
     </div>
   );
 }
