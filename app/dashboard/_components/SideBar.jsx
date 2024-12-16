@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useContext, useEffect } from "react";
+import CreateButton from "./CreateButton";
 
 function SideBar() {
   const { userDetails, setUserDetails } = useContext(UserDetailContext);
@@ -34,6 +35,7 @@ function SideBar() {
         <h2 className="font-medium text-lg">AI Video Editor</h2>
       </div>
       <ul className="mt-10">
+        <CreateButton />
         {menuOption.map((item, index) => (
           <Link href={item.path} key={index}>
             <li
