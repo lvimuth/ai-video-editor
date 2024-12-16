@@ -8,6 +8,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
 
 function CreateButton() {
   return (
@@ -20,10 +22,34 @@ function CreateButton() {
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Lets Create a new video</DialogTitle>
+            <DialogTitle className="text-center text-2xl">
+              Lets Create a new video
+            </DialogTitle>
             <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+              <div className="flex gap-5 items-center justify-center mt-5">
+                <Link href={"/create-ai-video"}>
+                  <div className="border rounded-lg p-4 w-full flex flex-col items-center gap-2 cursor-pointer hover:bg-gray-100">
+                    <Image
+                      src="/magic-wand.png"
+                      alt=""
+                      width={40}
+                      height={40}
+                    />
+                    <h2 className="text-md">Generate with AI</h2>
+                  </div>
+                </Link>
+                <Link href="/editor">
+                  <div className="border rounded-lg p-4 w-full flex flex-col items-center gap-2 cursor-pointer hover:bg-gray-100">
+                    <Image
+                      src="/video-editor.png"
+                      alt=""
+                      width={40}
+                      height={40}
+                    />
+                    <h2 className="text-md">Create from scratch</h2>
+                  </div>
+                </Link>
+              </div>
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
